@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: student-management
+  datasource:
+    url: jdbc:mysql://localhost:3306/student_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=utf8
+    username: root
+    password: ${DB_PASSWORD:root}   # change here or set env var DB_PASSWORD
+  jpa:
+    hibernate:
+      ddl-auto: update              # auto create/update tables (fine for learning; use Flyway in production)
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 16   # reduces N+1 queries when loading lazy collections

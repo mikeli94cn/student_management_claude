@@ -1,0 +1,41 @@
+### Create a course
+POST http://localhost:8080/api/courses
+Content-Type: application/json
+
+{ "code": "CS101", "name": "Intro to Computer Science", "credits": 3 }
+
+### Create a student
+POST http://localhost:8080/api/students
+Content-Type: application/json
+
+{ "studentNo": "2024001", "name": "Alice Chen", "email": "alice@example.com", "age": 20, "major": "Computer Science" }
+
+### List students (search + paging)
+GET http://localhost:8080/api/students?keyword=ali&page=0&size=10&sortBy=id&direction=desc
+
+### Get one student
+GET http://localhost:8080/api/students/1
+
+### Update a student
+PUT http://localhost:8080/api/students/1
+Content-Type: application/json
+
+{ "studentNo": "2024001", "name": "Alice Chen", "email": "alice@example.com", "age": 21, "major": "Software Engineering" }
+
+### Enroll student 1 in course 1
+POST http://localhost:8080/api/students/1/courses/1
+
+### Drop the course
+DELETE http://localhost:8080/api/students/1/courses/1
+
+### Validation error demo (expect 400)
+POST http://localhost:8080/api/students
+Content-Type: application/json
+
+{ "studentNo": "", "name": "", "email": "not-an-email", "age": 200 }
+
+### Delete a student (expect 204)
+DELETE http://localhost:8080/api/students/1
+
+### List courses
+GET http://localhost:8080/api/courses
